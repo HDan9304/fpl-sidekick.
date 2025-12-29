@@ -167,6 +167,11 @@ header {
     border: 1px solid rgba(0,0,0,0.05); /* Subtle crisp border */
 }
 
+[data-theme="dark"] .live-ticker {
+    background: rgba(30, 30, 30, 0.95); /* Dark glass effect */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
 .stat-box {
     padding: var(--space-sm);
     flex: 1;
