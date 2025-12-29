@@ -36,6 +36,10 @@
     --text-trend-up: #008a54;   /* Dark Green for white background */
     --text-trend-down: #e90052; /* Standard Pink */
     --surface-track: rgba(0,0,0,0.05);
+
+    /* Semantic Header Tokens */
+    --text-header: #FFFFFF;
+    --surface-header-hover: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="dark"] {
@@ -57,6 +61,10 @@
     --text-trend-up: #00ff87;   /* Neon Cyan for dark background */
     --text-trend-down: #ff4081; /* Lighter Pink for contrast */
     --surface-track: rgba(255,255,255,0.1);
+
+    /* Semantic Header Tokens (Dark) */
+    --text-header: #f0f4f8; /* Slightly softer white for dark mode */
+    --surface-header-hover: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -151,7 +159,7 @@ header {
     font-family: var(--font-head);
     font-weight: 800;
     font-size: 1.4rem;
-    color: white;
+    color: var(--text-header);
     letter-spacing: -1px; /* Tighter, cleaner brand look */
 }
 
@@ -172,7 +180,7 @@ header .btn-primary {
     background: none;
     border: none;
     cursor: pointer;
-    color: white;
+    color: var(--text-header);
     padding: 8px;
     border-radius: 50%;
     transition: background-color 0.2s;
@@ -182,7 +190,7 @@ header .btn-primary {
 }
 
 .theme-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--surface-header-hover);
 }
 
 /* Navigation Links (Desktop) */
@@ -193,8 +201,8 @@ header .btn-primary {
 }
 .nav-links a { 
     text-decoration: none; 
-    color: white; 
-    font-weight: 700; 
+    color: var(--text-header); 
+    font-weight: 700;
     font-size: 0.9rem; 
     text-transform: uppercase; /* confident hierarchy */
     letter-spacing: 0.5px;
@@ -207,7 +215,7 @@ header .btn-primary {
 /* Hamburger (Hidden on Desktop) */
 .hamburger {
     display: none; background: none; border: none; 
-    color: white; font-size: 1.5rem; cursor: pointer; padding-left: 10px;
+    color: var(--text-header); font-size: 1.5rem; cursor: pointer; padding-left: 10px;
 }
 
 /* --- LIVE DATA BAR --- */
