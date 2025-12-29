@@ -274,11 +274,39 @@ footer {
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem; }
-    .hero p { font-size: 1rem; }
-    .live-ticker { flex-direction: column; gap: 1rem; margin-top: 1rem; }
-    .stat-box { border-bottom: 1px solid rgba(0,0,0,0.1); width: 100%; }
-    .stat-box:last-child { border-bottom: none; }
+    /* Header: tighter spacing for mobile */
+    header { padding: 1rem 1.5rem; }
+    .logo { font-size: 1.2rem; }
+
+    /* Hero: Compact & Text-focused */
+    .hero { min-height: auto; padding: 7rem 1.5rem 4rem; }
+    .hero h1 { font-size: 2.25rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem; }
+
+    /* Live Ticker: 2-Column Grid Dashboard */
+    .live-ticker {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin: -2.5rem auto 3rem; /* Pull up to overlap hero */
+        padding: 1rem;
+        width: 95%;
+    }
+
+    /* Stat Box: Card-like style */
+    .stat-box {
+        background: rgba(0,0,0,0.03); /* Subtle tile background */
+        border-radius: 8px;
+        padding: 0.75rem;
+        width: 100%;
+        border-bottom: none; /* Remove old border */
+    }
+
+    /* Make 'Top Player' span full width (Row 2) */
+    .stat-box:nth-child(2) { grid-column: 1 / -1; order: 3; }
+    
+    .stat-value { font-size: 1.25rem; }
+    .stat-label { font-size: 0.7rem; }
 }
 
 /* --- MODAL STYLES --- */
