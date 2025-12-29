@@ -314,6 +314,13 @@ footer {
     
     .stat-value { font-size: 1.25rem; }
     .stat-label { font-size: 0.7rem; }
+
+    /* Features: Mobile Density */
+    .features { padding: 3rem 1.5rem; }
+    .features-grid { gap: 1rem; margin-top: 2rem; }
+    .feature-card { padding: 1.5rem; } /* Reduce padding */
+    .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.95rem; }
 }
 
 /* --- MODAL STYLES --- */
