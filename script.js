@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. FPL LIVE DATA FETCHING ---
     // Note: Using a proxy to bypass CORS restrictions for development
-    const PROXY_URL = 'https://api.allorigins.win/get?url=';
+    const PROXY_URL = 'https://corsproxy.io/?';
     const FPL_API_URL = encodeURIComponent('https://fantasy.premierleague.com/api/bootstrap-static/');
 
     async function fetchFPLData() {
@@ -36,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!response.ok) throw new Error('Network response was not ok');
             
-            const data = await response.json();
-            // AllOrigins returns the actual data inside a 'contents' string property
-            const fplData = JSON.parse(data.contents); 
+            const fplData = await response.json();
+            // corsproxy returns raw JSON, no JSON.parse needed on contents
 
             // A. Get Current Gameweek
             const currentEvent = fplData.events.find(event => event.is_current) || fplData.events.find(event => event.is_next);
@@ -66,4 +65,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger the fetch
     fetchFPLData();
+
+    // --- 3. ACCOUNT / MODAL LOGIC ---
+    const authBtn = document.getElementById('auth-btn');
+    const modal = document.getElementById('auth-modal');
+    const closeModal = document.getElementById('close-modal');
+    const saveBtn = document.getElementById('save-id-btn');
+    const idInput = document.getElementById('fpl-id-input');
+
+    function updateAuthUI() {
+        const storedId = localStorage.getItem('fpl_id');
+        if (storedId) {
+            authBtn.textContent = 'Sign Out';
+            authBtn.style.backgroundColor = 'var(--fpl-pink)';
+            authBtn.style.color = 'white';
+        } else {
+            authBtn.textContent = 'Sign In';
+            authBtn.style.backgroundColor = 'var(--fpl-cyan)';
+            authBtn.style.color = 'var(--fpl-purple)';
+        }
+    }
+
+    authBtn.addEventListener('click', () => {
+        if (localStorage.getItem('fpl_id')) {
+            // Sign Out action
+            if(confirm('Are you sure you want to sign out?')) {
+                localStorage.removeItem('fpl_id');
+                updateAuthUI();
+                alert('Signed out successfully.');
+            }
+        } else {
+            // Sign In action (Open Modal)
+            modal.classList.remove('hidden');
+        }
+    });
+
+    saveBtn.addEventListener('click', () => {
+        const id = idInput.value;
+        if (id) {
+            localStorage.setItem('fpl_id', id);
+            modal.classList.add('hidden');
+            updateAuthUI();
+            alert('Team ID saved!');
+        }
+    });
+
+    closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+    
+    // Check status on load
+    updateAuthUI();
 });

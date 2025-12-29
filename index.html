@@ -12,6 +12,7 @@
     <header>
         <div class="logo">FPL Sidekick</div>
         <div class="toggle-container">
+            <button id="auth-btn" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.8rem; margin-right: 15px;">Sign In</button>
             <span class="toggle-label">Dark Mode</span>
             <label class="switch">
                 <input type="checkbox" id="theme-toggle">
@@ -65,6 +66,27 @@
     <footer>
         &copy; 2025 FPL Sidekick. Not officially affiliated with the Premier League.
     </footer>
+
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2 style="color: var(--fpl-purple);">Link Your Team</h2>
+            <div class="input-group">
+                <input type="number" id="fpl-id-input" placeholder="Enter your FPL Team ID">
+                <button id="save-id-btn" class="btn btn-primary">Save</button>
+            </div>
+            
+            <div class="tutorial-box">
+                <h4> How to find your ID:</h4>
+                <ol>
+                    <li>Login to the official <a href="https://fantasy.premierleague.com/" target="_blank">FPL website</a>.</li>
+                    <li>Click on the <strong>"Points"</strong> tab.</li>
+                    <li>Look at the URL in your browser address bar.</li>
+                    <li>The number is the ID: <em>.../entry/<strong>123456</strong>/event/...</em></li>
+                </ol>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
