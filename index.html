@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPL Sidekick | Your Fantasy Premier League Companion</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+</head>
 </head>
 <body>
 
@@ -45,14 +47,14 @@
 
     <section class="dashboard">
         <div class="tab-nav">
-            <button class="tab-btn active" data-tab="tab-hot">Market Hot </button>
-            <button class="tab-btn" data-tab="tab-cold">Market Cold </button>
+            <button class="tab-btn active" data-tab="tab-hot">Market Hot <i class="fa-solid fa-fire"></i></button>
+            <button class="tab-btn" data-tab="tab-cold">Market Cold <i class="fa-regular fa-snowflake"></i></button>
         </div>
 
         <div id="tab-hot" class="tab-content active">
             <div class="dash-card">
                 <div class="dash-header">
-                    <h3> Top Transfers In</h3>
+                    <h3><i class="fa-solid fa-arrow-trend-up" style="color: var(--fpl-cyan);"></i> Top Transfers In</h3>
                     <span class="tag">Gameweek Trend</span>
                 </div>
                 <div id="market-hot-list" class="player-list">
@@ -64,7 +66,7 @@
         <div id="tab-cold" class="tab-content">
             <div class="dash-card">
                 <div class="dash-header">
-                    <h3> Top Transfers Out</h3>
+                    <h3><i class="fa-solid fa-arrow-trend-down" style="color: var(--fpl-pink);"></i> Top Transfers Out</h3>
                     <span class="tag">Gameweek Trend</span>
                 </div>
                 <div id="market-cold-list" class="player-list">

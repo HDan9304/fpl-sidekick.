@@ -217,38 +217,46 @@ header {
     padding: 0 1rem;
 }
 
-/* Tab Navigation */
+/* Tab Navigation - Modern Segmented Control Style */
 .tab-nav {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    background-color: rgba(0,0,0,0.05); /* Subtle container track */
+    padding: 0.3rem;
+    border-radius: 50px;
+    width: fit-content;
+    margin: 0 auto 2rem auto;
 }
+
+[data-theme="dark"] .tab-nav { background-color: rgba(255,255,255,0.1); }
 
 .tab-btn {
     background: transparent;
-    border: 2px solid var(--border-subtle);
+    border: none;
     color: var(--text-muted);
-    padding: 0.6rem 1.5rem;
-    border-radius: 20px;
-    font-weight: 700;
+    padding: 0.6rem 2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    /* Icon alignment */
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px;
     cursor: pointer;
     font-size: 0.9rem;
     transition: all 0.2s ease;
 }
 
-.tab-btn:hover { background: var(--surface-muted); }
+.tab-btn:hover { color: var(--text-color); }
 
 .tab-btn.active {
-    background: var(--fpl-purple);
-    color: white;
-    border-color: var(--fpl-purple);
+    background: var(--card-bg); /* White pill on grey track */
+    color: var(--fpl-purple);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle lift */
 }
 
 [data-theme="dark"] .tab-btn.active {
-    background: var(--fpl-cyan);
-    color: var(--fpl-purple);
-    border-color: var(--fpl-cyan);
+    color: var(--fpl-cyan);
+    background: #3d3d3d;
 }
 
 /* Tab Visibility */
@@ -261,29 +269,41 @@ header {
     background: var(--card-bg);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow);
-    padding: 1.5rem;
-    border: 1px solid var(--border-subtle);
+    padding: 2rem; /* Increased padding */
+    border: none; /* Removed border for cleaner look */
 }
 
 .dash-header {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1rem; padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem; padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-subtle);
 }
-.dash-header h3 { font-size: 1.1rem; color: var(--text-color); font-weight: 800; }
-.tag { font-size: 0.75rem; background: var(--surface-muted); padding: 4px 8px; border-radius: 4px; color: var(--text-muted); }
+.dash-header h3 { 
+    font-size: 1.25rem; 
+    color: var(--text-color); 
+    font-weight: 800; 
+    letter-spacing: -0.5px;
+    /* Icon alignment */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.tag { font-size: 0.75rem; background: var(--surface-muted); padding: 6px 12px; border-radius: 20px; color: var(--text-muted); font-weight: 600; }
 
 /* Player Row Styling */
 .player-row {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0.75rem 0; border-bottom: 1px solid var(--border-subtle);
+    padding: 1rem 0.5rem; /* More air */
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background-color 0.2s;
 }
+.player-row:hover { background-color: var(--surface-muted); border-radius: 8px; } /* Hover effect */
 .player-row:last-child { border-bottom: none; }
 
-.p-info { display: flex; flex-direction: column; }
-.p-name { font-weight: 700; font-size: 0.95rem; color: var(--text-color); }
-.p-meta { font-size: 0.8rem; color: var(--text-muted); }
-.p-stat { font-weight: 700; font-size: 0.95rem; }
+.p-info { display: flex; flex-direction: column; gap: 2px; }
+.p-name { font-weight: 700; font-size: 1rem; color: var(--text-color); }
+.p-meta { font-size: 0.85rem; color: var(--text-muted); }
+.p-stat { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; } /* Bolder stats */
 
 /* --- FEATURES SECTION --- */
 .features {
