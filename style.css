@@ -269,7 +269,7 @@ header {
     background: var(--card-bg);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow);
-    padding: 2rem; /* Increased padding */
+    padding: 1.25rem; /* Mobile First: Tighter density */
     border: none; /* Removed border for cleaner look */
 }
 
@@ -304,6 +304,28 @@ header {
 .p-name { font-weight: 700; font-size: 1rem; color: var(--text-color); }
 .p-meta { font-size: 0.85rem; color: var(--text-muted); }
 .p-stat { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; } /* Bolder stats */
+
+/* --- DESKTOP DASHBOARD (Split View) --- */
+@media (min-width: 1024px) {
+    .dashboard {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Split screen */
+        gap: 2rem;
+        align-items: start;
+    }
+
+    /* Hide tabs on desktop - show everything at once */
+    .tab-nav { display: none; }
+
+    /* Force both panels to be visible overrides JS toggling */
+    .tab-content { 
+        display: block !important; 
+        animation: none;
+    }
+
+    /* Restore spacious padding for desktop */
+    .dash-card { padding: 2.5rem; }
+}
 
 /* --- FEATURES SECTION --- */
 .features {
