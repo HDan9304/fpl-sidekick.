@@ -29,6 +29,8 @@
     --surface-muted: #F7FAFC;      /* For tutorial boxes */
     --surface-input: #F7FAFC;      /* For form inputs */
     --surface-input-focus: #FFFFFF;
+    --border-subtle: rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="dark"] {
@@ -39,6 +41,8 @@
     --surface-muted: rgba(255, 255, 255, 0.05); /* Low opacity white = soft dark grey */
     --surface-input: rgba(0, 0, 0, 0.2);        /* Darker inset for inputs */
     --surface-input-focus: rgba(0, 0, 0, 0.4);
+    --border-subtle: rgba(255, 255, 255, 0.1);  /* Visible white border for dark mode */
+    --shadow-hover: 0 25px 30px -5px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
     --text-color: #f0f4f8;
     --card-bg: #2d2d2d;
     --nav-bg: rgba(26, 26, 26, 0.9);
@@ -227,13 +231,13 @@ header {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow); /* Soft shadow */
     text-align: left;
-    border: 1px solid rgba(0,0,0,0.03); /* Very subtle definition */
+    border: 1px solid var(--border-subtle); /* Semantic Token */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-8px); /* Higher lift */
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-hover); /* Semantic Token */
 }
 
 .feature-card h3 {
@@ -310,13 +314,6 @@ footer {
     
     .stat-value { font-size: 1.25rem; }
     .stat-label { font-size: 0.7rem; }
-
-    /* Features: Mobile Density */
-    .features { padding: 3rem 1.5rem; }
-    .features-grid { gap: 1rem; margin-top: 2rem; }
-    .feature-card { padding: 1.5rem; } /* Reduce padding */
-    .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-    .feature-card p { font-size: 0.95rem; }
 }
 
 /* --- MODAL STYLES --- */
