@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPL Sidekick | Your Fantasy Premier League Companion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">FPL Sidekick</div>
+        <div class="toggle-container">
+            <span class="toggle-label">Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Master Your Mini-League</h1>
+        <p>
+            The ultimate companion for Fantasy Premier League managers. 
+            Get live rank updates, price prediction algorithms, and smart transfer suggestions in real-time.
+        </p>
+        <button class="btn btn-primary" onclick="alert('Coming soon!')">Get Started</button>
+    </section>
+
+    <div class="live-ticker" id="data-container">
+        <div class="stat-box">
+            <div class="stat-label">Current Gameweek</div>
+            <div class="stat-value" id="gw-display"><div class="loader"></div></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Top Player (Total Points)</div>
+            <div class="stat-value" id="top-player-display"><div class="loader"></div></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Total Managers</div>
+            <div class="stat-value" id="managers-display"><div class="loader"></div></div>
+        </div>
+    </div>
+
+    <section class="features">
+        <h2>Why use FPL Sidekick?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🚀 Live Rank Updates</h3>
+                <p>Don't wait for the official site to update. See exactly where you stand in your mini-leagues while the matches are still being played.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💰 Price Predictor</h3>
+                <p>Catch price rises before they happen. Our algorithm tracks transfer trends to help you build team value.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧠 Transfer Planner</h3>
+                <p>Plan up to 5 gameweeks ahead with our drag-and-drop interface. visualize your bench and chip strategy seamlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 FPL Sidekick. Not officially affiliated with the Premier League.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
