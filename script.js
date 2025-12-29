@@ -135,6 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.replace('fa-xmark', 'fa-bars');
         }
     });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            hamburger.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+        });
+    });
     
     updateAuthUI();
 });
