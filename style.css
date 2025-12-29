@@ -31,6 +31,11 @@
     --surface-input-focus: #FFFFFF;
     --border-subtle: rgba(0, 0, 0, 0.03);
     --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Semantic Trends (Light Mode Safe) */
+    --text-trend-up: #008a54;   /* Dark Green for white background */
+    --text-trend-down: #e90052; /* Standard Pink */
+    --surface-track: rgba(0,0,0,0.05);
 }
 
 [data-theme="dark"] {
@@ -47,6 +52,11 @@
     --card-bg: #2d2d2d;
     --nav-bg: rgba(26, 26, 26, 0.9);
     --shadow: 0 4px 6px rgba(0,0,0,0.5);
+
+    /* Semantic Trends (Dark Mode) */
+    --text-trend-up: #00ff87;   /* Neon Cyan for dark background */
+    --text-trend-down: #ff4081; /* Lighter Pink for contrast */
+    --surface-track: rgba(255,255,255,0.1);
 }
 
 * {
@@ -221,7 +231,7 @@ header {
 .tab-nav {
     display: flex;
     justify-content: center;
-    background-color: rgba(0,0,0,0.05); /* Subtle container track */
+    background-color: var(--surface-track); /* Semantic Token */
     padding: 0.3rem;
     border-radius: 50px;
     width: fit-content;
@@ -304,6 +314,10 @@ header {
 .p-name { font-weight: 700; font-size: 1rem; color: var(--text-color); }
 .p-meta { font-size: 0.85rem; color: var(--text-muted); }
 .p-stat { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; } /* Bolder stats */
+
+/* Utility Classes for Trends */
+.text-trend-up { color: var(--text-trend-up); }
+.text-trend-down { color: var(--text-trend-down); }
 
 /* --- DESKTOP DASHBOARD (Split View) --- */
 @media (min-width: 1024px) {
