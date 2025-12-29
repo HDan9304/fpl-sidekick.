@@ -24,15 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 2. FPL LIVE DATA FETCHING ---
-    const PROXY_URL = 'https://api.allorigins.win/raw?url=';
+    const PROXIES = [
+        'https://api.allorigins.win/raw?url=',
+        'https://corsproxy.io/?',
+        'https://api.codetabs.com/v1/proxy?quest='
+    ];
     const FPL_API_URL = encodeURIComponent('https://fantasy.premierleague.com/api/bootstrap-static/');
 
     async function fetchFPLData() {
-        try {
-            const response = await fetch(PROXY_URL + FPL_API_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            const fplData = await response.json();
+        let fplData = null;
 
+        // Loop through proxies until one works
+        for (const proxy of PROXIES) {
+            try {
+                const res = await fetch(proxy + FPL_API_URL);
+                if (res.ok) { fplData = await res.json(); break; }
+            } catch (e) { console.warn('Proxy failed:', proxy); }
+        }
+
+        if (!fplData) { document.getElementById('gw-display').textContent = "Error"; return; }
+
+        try {
             // A. Basic Stats
             const currentEvent = fplData.events.find(event => event.is_current) || fplData.events.find(event => event.is_next);
             document.getElementById('gw-display').textContent = currentEvent ? currentEvent.name : "Pre-Season";
