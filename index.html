@@ -43,6 +43,37 @@
         </div>
     </div>
 
+    <section class="dashboard">
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-hot">Market Hot </button>
+            <button class="tab-btn" data-tab="tab-cold">Market Cold </button>
+        </div>
+
+        <div id="tab-hot" class="tab-content active">
+            <div class="dash-card">
+                <div class="dash-header">
+                    <h3> Top Transfers In</h3>
+                    <span class="tag">Gameweek Trend</span>
+                </div>
+                <div id="market-hot-list" class="player-list">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-cold" class="tab-content">
+            <div class="dash-card">
+                <div class="dash-header">
+                    <h3> Top Transfers Out</h3>
+                    <span class="tag">Gameweek Trend</span>
+                </div>
+                <div id="market-cold-list" class="player-list">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="features">
         <h2>Why use FPL Sidekick?</h2>
         <div class="features-grid">
@@ -86,6 +117,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
