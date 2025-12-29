@@ -5,19 +5,25 @@
     --fpl-pink: #e90052;
     --fpl-cyan: #00ff87;
     
-    /* Typography & Spacing System */
+    /* Modern Palette & System */
+    --bg-color: #F7FAFC;       /* Cleaner, cooler grey-white */
+    --text-color: #2D3748;     /* Soft dark grey, not pure black */
+    --text-muted: #718096;     /* For secondary text */
+    --card-bg: #FFFFFF;
+    --nav-bg: rgba(255, 255, 255, 0.85); /* Glassmorphism base */
+    
+    /* Refined Spacing & Shape */
+    --space-sm: 1.5rem;        /* More breathing room (was 1rem) */
+    --space-md: 3rem;          /* (was 2rem) */
+    --space-lg: 6rem;          /* (was 4rem) */
+    --radius-md: 16px;         /* Modern rounded corners */
+    
+    /* Typography */
     --font-head: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
-    --space-sm: 1rem;    /* Systematic small padding */
-    --space-md: 2rem;    /* Systematic medium padding */
-    --space-lg: 4rem;    /* Systematic large padding */
     
-    /* Light Mode Defaults */
-    --bg-color: #f0f4f8;
-    --text-color: #333333;
-    --card-bg: #ffffff;
-    --nav-bg: rgba(255, 255, 255, 0.9);
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* "Elevated" Shadow (Soft & diffused) */
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] {
@@ -40,8 +46,9 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.7; /* Better readability */
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Crisper text */
 }
 
 /* --- GRADIENT HERO SECTION --- */
@@ -59,11 +66,13 @@ body {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-family: var(--font-head);
+    font-size: 4rem; /* Slightly larger */
     font-weight: 800;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    letter-spacing: -1px;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    letter-spacing: -2px; /* Tighter, more modern tracking */
+    line-height: 1.1;
 }
 
 .hero p {
@@ -75,14 +84,15 @@ body {
 
 /* --- BUTTONS --- */
 .btn {
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    border-radius: 12px; /* Consistent "Squircle" shape */
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
     border: none;
-    transition: transform 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle button shadow */
 }
 
 .btn-primary {
@@ -159,12 +169,14 @@ input:checked + .slider:before { transform: translateX(26px); }
 
 /* --- LIVE DATA BAR --- */
 .live-ticker {
-    background-color: var(--card-bg);
+    background-color: var(--card-bg); /* Fallback */
+    background: rgba(255, 255, 255, 0.95); /* Slight transparency */
+    backdrop-filter: blur(10px); /* Glass effect */
     padding: var(--space-md);
     width: 90%;
     max-width: 1000px;
-    margin: -3rem auto 3rem auto;
-    border-radius: 12px;
+    margin: -4rem auto 4rem auto; /* Deeper overlap */
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow);
     display: flex;
     flex-wrap: wrap;
@@ -173,7 +185,7 @@ input:checked + .slider:before { transform: translateX(26px); }
     position: relative;
     z-index: 5;
     text-align: center;
-    border-top: 4px solid var(--fpl-pink);
+    border: 1px solid rgba(0,0,0,0.05); /* Subtle crisp border */
 }
 
 .stat-box {
@@ -218,15 +230,16 @@ input:checked + .slider:before { transform: translateX(26px); }
 .feature-card {
     background-color: var(--card-bg);
     padding: var(--space-md);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow); /* Soft shadow */
     text-align: left;
-    border-left: 5px solid transparent;
+    border: 1px solid rgba(0,0,0,0.03); /* Very subtle definition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
-    border-left: 5px solid var(--fpl-cyan);
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Higher lift */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .feature-card h3 {
