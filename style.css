@@ -134,17 +134,32 @@ header {
     position: absolute;
     top: 0;
     width: 100%;
-    padding: 1.5rem 2rem;
+    z-index: 10;
+    padding: 1.5rem 1rem;
+}
+
+.header-inner {
+    max-width: 1200px; /* Aligns with page content */
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
+    width: 100%;
 }
 
 .logo {
+    font-family: var(--font-head);
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: white;
+    letter-spacing: -1px; /* Tighter, cleaner brand look */
+}
+
+/* Specific styling for header button (formerly inline) */
+header .btn-primary {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    margin-right: 1rem;
 }
 
 .toggle-container {
