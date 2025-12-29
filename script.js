@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // B. Render Dashboard Modules
             renderMarketHot(fplData);
             renderMarketCold(fplData);
+            
+            // C. Load Planner (User Squad)
+            loadUserTeam(fplData);
 
         } catch (error) {
             console.error('Error:', error);
@@ -143,6 +146,86 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
         });
     });
+
+    // --- 6. PLANNER LOGIC (Formation) ---
+    async function loadUserTeam(fplData) {
+        const userId = localStorage.getItem('fpl_id');
+        const messageEl = document.getElementById('planner-message');
+        const squadView = document.getElementById('squad-view');
+
+        if (!userId) {
+            messageEl.style.display = 'block';
+            squadView.style.display = 'none';
+            return;
+        }
+
+        // Get Current Gameweek
+        const currentEvent = fplData.events.find(e => e.is_current) || fplData.events.find(e => e.is_next);
+        const gwId = currentEvent ? currentEvent.id : 1;
+        const picksUrl = encodeURIComponent(`https://fantasy.premierleague.com/api/entry/${userId}/event/${gwId}/picks/`);
+        
+        try {
+            let picksData = null;
+            for (const proxy of PROXIES) {
+                try {
+                    const res = await fetch(proxy + picksUrl);
+                    if (res.ok) { picksData = await res.json(); break; }
+                } catch(e) {}
+            }
+
+            if (!picksData) throw new Error('Could not fetch team');
+
+            // Merge IDs with Real Data
+            const fullSquad = picksData.picks.map(pick => {
+                const player = fplData.elements.find(e => e.id === pick.element);
+                return { ...player, position: pick.position }; 
+            });
+
+            renderPitch(fullSquad);
+            messageEl.style.display = 'none';
+            squadView.style.display = 'block';
+
+        } catch (err) {
+            console.error(err);
+            messageEl.innerHTML = `<p style="color:red">Error loading team. ID might be wrong or API is busy.</p>`;
+        }
+    }
+
+    function renderPitch(squad) {
+        const pitchContainer = document.getElementById('pitch-field');
+        const benchContainer = document.getElementById('bench-field');
+        pitchContainer.innerHTML = ''; benchContainer.innerHTML = '';
+
+        // Split Starters (1-11) & Bench (12-15)
+        const starters = squad.slice(0, 11);
+        const bench = squad.slice(11, 15);
+
+        // Group by Element Type (1=GKP, 2=DEF, 3=MID, 4=FWD)
+        const rows = [
+            starters.filter(p => p.element_type === 1),
+            starters.filter(p => p.element_type === 2),
+            starters.filter(p => p.element_type === 3),
+            starters.filter(p => p.element_type === 4)
+        ];
+
+        const createCard = (p) => `
+            <div class="pitch-player">
+                <i class="fa-solid fa-shirt kit-icon" style="color: ${p.element_type === 1 ? '#eab308' : '#fff'}"></i>
+                <div class="player-box">
+                    <span class="p-name-short">${p.web_name}</span>
+                    <span class="p-points">${p.event_points} pts</span>
+                </div>
+            </div>`;
+
+        rows.forEach(row => {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'pitch-row';
+            rowDiv.innerHTML = row.map(createCard).join('');
+            pitchContainer.appendChild(rowDiv);
+        });
+
+        benchContainer.innerHTML = bench.map(createCard).join('');
+    }
     
     updateAuthUI();
 });
