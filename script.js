@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. FPL LIVE DATA FETCHING ---
     // Note: Using a proxy to bypass CORS restrictions for development
-    const PROXY_URL = 'https://corsproxy.io/?';
+    const PROXY_URL = 'https://api.allorigins.win/raw?url=';
     const FPL_API_URL = encodeURIComponent('https://fantasy.premierleague.com/api/bootstrap-static/');
 
     async function fetchFPLData() {
