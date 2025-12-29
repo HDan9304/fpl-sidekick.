@@ -220,7 +220,7 @@ header {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Strict 3-column desktop grid */
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -317,8 +317,21 @@ footer {
 
     /* Features: Mobile Density */
     .features { padding: 3rem 1.5rem; }
-    .features-grid { gap: 1rem; margin-top: 2rem; }
-    .feature-card { padding: 1.5rem; } /* Reduce padding */
+    
+    /* Force 1-column stack for mobile scanning */
+    .features-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1rem; 
+        margin-top: 2rem; 
+    }
+
+    /* Transform cards into scan-friendly tiles */
+    .feature-card { 
+        padding: 1.5rem; 
+        border-radius: 12px; /* Slightly less rounded than desktop */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Lower elevation for list feel */
+    } 
+
     .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
     .feature-card p { font-size: 0.95rem; }
 }
