@@ -223,7 +223,7 @@ header {
 
 .feature-card {
     background-color: var(--card-bg);
-    padding: var(--space-md);
+    padding: 2.5rem; /* Balanced spacing */
     border-radius: var(--radius-md);
     box-shadow: var(--shadow); /* Soft shadow */
     text-align: left;
@@ -238,9 +238,18 @@ header {
 
 .feature-card h3 {
     font-family: var(--font-head);
-    font-weight: 700;
-    margin-bottom: var(--space-sm);
+    font-weight: 800; /* Extra bold for confidence */
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
     color: var(--fpl-purple);
+}
+
+/* New Rule: Muted text for better hierarchy */
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
 [data-theme="dark"] .feature-card h3 {
