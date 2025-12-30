@@ -227,12 +227,15 @@ document.addEventListener('DOMContentLoaded', () => {
             starters.filter(p => p.element_type === 4)
         ];
 
+        // Modern Card Template: Badge on Kit + Name Pill
         const createCard = (p) => `
             <div class="pitch-player">
-                <i class="fa-solid fa-shirt kit-icon" style="color: ${p.element_type === 1 ? '#eab308' : '#fff'}"></i>
-                <div class="player-box">
+                <div class="kit-wrapper">
+                    <i class="fa-solid fa-shirt kit-icon" style="color: ${p.element_type === 1 ? '#eab308' : '#fff'}"></i>
+                    <div class="points-badge">${p.event_points}</div>
+                </div>
+                <div class="player-pill">
                     <span class="p-name-short">${p.web_name}</span>
-                    <span class="p-points">${p.event_points} pts</span>
                 </div>
             </div>`;
 

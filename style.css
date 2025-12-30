@@ -669,45 +669,85 @@ footer {
 }
 
 /* --- PLANNER & PITCH --- */
-.planner-container { padding: 1rem; }
+.planner-container { padding: 0; } /* Remove padding for immersive feel */
 
 .pitch {
-    background: linear-gradient(180deg, #38a169 0%, #2f855a 100%); /* Grass Green */
-    border: 4px solid rgba(255,255,255,0.8);
-    border-radius: 12px;
-    padding: 2rem 0;
-    min-height: 700px;
+    /* "Stadium Night" aesthetic: Radial focus */
+    background: radial-gradient(50% 50% at 50% 50%, #347c49 0%, #1e5233 100%);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 2.5rem 0;
+    min-height: 720px; /* Taller for breathing room */
     display: flex; flex-direction: column; justify-content: space-between;
     position: relative;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.2);
     margin-bottom: 2rem;
+    overflow: hidden;
 }
 
-/* Pitch markings */
+/* Pitch Markings (Subtle & Crisp) */
 .pitch::before {
     content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 150px; height: 150px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; pointer-events: none;
+    width: 150px; height: 150px; border: 2px solid rgba(255,255,255,0.15); border-radius: 50%; pointer-events: none;
 }
 .pitch::after {
-    content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
-    background: rgba(255,255,255,0.3); pointer-events: none;
+    content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px;
+    background: rgba(255,255,255,0.15); pointer-events: none;
 }
 
-.pitch-row { display: flex; justify-content: center; gap: 1rem; position: relative; z-index: 2; }
+.pitch-row { display: flex; justify-content: center; gap: 2vw; position: relative; z-index: 2; }
 
-/* Player Card */
+/* Player Card (Clean Layout) */
 .pitch-player {
-    display: flex; flex-direction: column; align-items: center; width: 90px;
-    text-align: center; cursor: pointer; transition: transform 0.2s;
+    display: flex; flex-direction: column; align-items: center; width: 80px;
+    cursor: pointer; position: relative;
 }
-.pitch-player:hover { transform: translateY(-5px); }
 
-.kit-icon { font-size: 2.5rem; margin-bottom: 5px; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3)); }
+.kit-wrapper { position: relative; margin-bottom: 6px; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.pitch-player:hover .kit-wrapper { transform: translateY(-5px) scale(1.1); }
 
-.player-box {
-    background-color: var(--card-bg); padding: 4px 8px; border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2); width: 100%;
+.kit-icon { 
+    font-size: 2.5rem; 
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Deep shadow for 3D pop */
 }
+
+/* Modern Points Badge (Notification Style) */
+.points-badge {
+    position: absolute; top: -5px; right: -8px;
+    background: #fff; color: #1a4926;
+    font-size: 0.7rem; font-weight: 800;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Name Pill (Glassmorphism) */
+.player-pill {
+    background-color: rgba(0, 20, 40, 0.6); /* Dark semi-transparent */
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.p-name-short {
+    font-weight: 700; font-size: 0.75rem; color: white; display: block;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70px;
+    letter-spacing: 0.3px;
+}
+
+/* Bench & States */
+.bench-container { 
+    background: var(--card-bg); border: 1px solid var(--border-subtle);
+    padding: 1.5rem; border-radius: 16px; 
+    display: flex; justify-content: center; gap: 1.5rem; 
+}
+.bench-container .p-name-short { color: var(--text-color); } /* Dark text on bench */
+.bench-container .player-pill { background: var(--surface-muted); border: none; }
+
+.planner-empty { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
 
 .p-name-short {
     font-weight: 700; font-size: 0.8rem; display: block;
