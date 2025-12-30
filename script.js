@@ -2,6 +2,7 @@ import { renderMarketHot } from './components/marketHot.js';
 import { renderMarketCold } from './components/marketCold.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    let cachedFplData = null; // Store for reactive loading
     
     // --- 1. THEME TOGGLE LOGIC ---
     const toggleBtn = document.getElementById('theme-toggle');
@@ -43,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!fplData) { document.getElementById('gw-display').textContent = "Error"; return; }
+
+        cachedFplData = fplData; // Save data for re-use
 
         try {
             // A. Basic Stats
@@ -125,6 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('fpl_id', idInput.value);
             modal.classList.add('hidden');
             updateAuthUI();
+
+            // Instant Reload: If we have data and are on the planner page, load the team
+            if (cachedFplData && document.getElementById('planner-message')) {
+                loadUserTeam(cachedFplData);
+            }
         }
     });
 
