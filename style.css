@@ -668,16 +668,16 @@ footer {
     }
 }
 
-/* --- PLANNER & PITCH --- */
-.planner-container { padding: 0; } /* Remove padding for immersive feel */
+/* --- PLANNER & PITCH (DESKTOP DEFAULT) --- */
+.planner-container { padding: 0; }
 
 .pitch {
-    /* "Stadium Night" aesthetic: Radial focus */
+    /* Desktop: Spacious Stadium View */
     background: radial-gradient(50% 50% at 50% 50%, #347c49 0%, #1e5233 100%);
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 16px;
-    padding: 2.5rem 0;
-    min-height: 720px; /* Taller for breathing room */
+    padding: 3rem 0;
+    min-height: 720px; /* Fixed height for large screens */
     display: flex; flex-direction: column; justify-content: space-between;
     position: relative;
     box-shadow: inset 0 0 80px rgba(0,0,0,0.2);
@@ -685,7 +685,7 @@ footer {
     overflow: hidden;
 }
 
-/* Pitch Markings (Subtle & Crisp) */
+/* Markings */
 .pitch::before {
     content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 150px; height: 150px; border: 2px solid rgba(255,255,255,0.15); border-radius: 50%; pointer-events: none;
@@ -697,9 +697,10 @@ footer {
 
 .pitch-row { display: flex; justify-content: center; gap: 2vw; position: relative; z-index: 2; }
 
-/* Player Card (Clean Layout) */
+/* Desktop Player Card */
 .pitch-player {
-    display: flex; flex-direction: column; align-items: center; width: 80px;
+    display: flex; flex-direction: column; align-items: center; 
+    width: 80px; /* Fixed width for precision */
     cursor: pointer; position: relative;
 }
 
@@ -707,11 +708,10 @@ footer {
 .pitch-player:hover .kit-wrapper { transform: translateY(-5px) scale(1.1); }
 
 .kit-icon { 
-    font-size: 2.5rem; 
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Deep shadow for 3D pop */
+    font-size: 2.5rem; /* Large icon */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
 }
 
-/* Modern Points Badge (Notification Style) */
 .points-badge {
     position: absolute; top: -5px; right: -8px;
     background: #fff; color: #1a4926;
@@ -722,32 +722,92 @@ footer {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Name Pill (Glassmorphism) */
 .player-pill {
-    background-color: rgba(0, 20, 40, 0.6); /* Dark semi-transparent */
+    background-color: rgba(0, 20, 40, 0.6);
     backdrop-filter: blur(4px);
     padding: 4px 10px;
     border-radius: 20px;
     text-align: center;
     border: 1px solid rgba(255,255,255,0.1);
+    min-width: 70px;
 }
 
 .p-name-short {
     font-weight: 700; font-size: 0.75rem; color: white; display: block;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70px;
-    letter-spacing: 0.3px;
 }
 
-/* Bench & States */
+/* Bench Defaults */
 .bench-container { 
     background: var(--card-bg); border: 1px solid var(--border-subtle);
     padding: 1.5rem; border-radius: 16px; 
     display: flex; justify-content: center; gap: 1.5rem; 
 }
-.bench-container .p-name-short { color: var(--text-color); } /* Dark text on bench */
+.bench-container .p-name-short { color: var(--text-color); }
 .bench-container .player-pill { background: var(--surface-muted); border: none; }
-
 .planner-empty { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
+
+/* --- MOBILE OVERRIDE (TACTICAL BOARD) --- */
+@media (max-width: 768px) {
+    /* 1. Compact Pitch Container */
+    .pitch {
+        min-height: 600px; /* Reduced verticality */
+        padding: 1.5rem 0 2.5rem 0;
+        background: radial-gradient(circle at center, #2f855a 0%, #1a4926 100%); /* Simpler gradient */
+        border-radius: 0; /* Full edge-to-edge feel inside card */
+        margin: 0 -1.25rem 1.5rem -1.25rem; /* Negative margin to pull to edges */
+        width: calc(100% + 2.5rem);
+    }
+
+    /* 2. Fluid Layout for Formation (5-at-the-back safety) */
+    .pitch-row {
+        gap: 2%; /* Tighten gaps */
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .pitch-player {
+        width: 18%; /* Fluid width: fits 5 players easily (18*5 = 90%) */
+        max-width: 65px; 
+    }
+
+    /* 3. Scaled Down Typography & Icons */
+    .kit-icon { font-size: 1.8rem; margin-bottom: 2px; }
+    
+    .player-pill {
+        padding: 2px 6px;
+        min-width: auto;
+        width: 100%;
+        background-color: rgba(0, 20, 40, 0.75); /* Darker for contrast */
+    }
+
+    .p-name-short {
+        font-size: 0.65rem; /* Smaller text */
+        max-width: 100%;
+    }
+
+    .points-badge {
+        width: 16px; height: 16px;
+        font-size: 0.6rem;
+        top: -4px; right: -4px;
+    }
+
+    /* 4. Scrollable Bench */
+    .bench-container {
+        justify-content: flex-start; /* Align left */
+        overflow-x: auto; /* Allow scrolling */
+        padding: 1rem;
+        gap: 1rem;
+        margin: 0 -1rem; /* Full width scroll area */
+        border-radius: 0;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .bench-container .pitch-player {
+        min-width: 60px;
+        scroll-snap-align: center;
+    }
+}
 
 .p-name-short {
     font-weight: 700; font-size: 0.8rem; display: block;
