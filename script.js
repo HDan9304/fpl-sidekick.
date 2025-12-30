@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. FPL LIVE DATA FETCHING ---
     const PROXIES = [
-        'https://api.allorigins.win/raw?url=',
         'https://corsproxy.io/?',
-        'https://api.codetabs.com/v1/proxy?quest='
+        'https://api.codetabs.com/v1/proxy?quest=',
+        'https://api.allorigins.win/raw?url='
     ];
     const FPL_API_URL = encodeURIComponent('https://fantasy.premierleague.com/api/bootstrap-static/');
 

@@ -38,8 +38,8 @@
     --surface-track: rgba(0,0,0,0.05);
 
     /* Semantic Header Tokens */
-    --text-header: #FFFFFF;
-    --surface-header-hover: rgba(255, 255, 255, 0.2);
+    --text-header: var(--fpl-purple);
+    --surface-header-hover: rgba(55, 0, 60, 0.1);
 }
 
 [data-theme="dark"] {
@@ -144,6 +144,12 @@ header {
     width: 100%;
     z-index: 10;
     padding: 1.5rem 1rem;
+}
+
+/* Override for Homepage Gradient Hero */
+.hero-header {
+    --text-header: #FFFFFF;
+    --surface-header-hover: rgba(255, 255, 255, 0.2);
 }
 
 .header-inner {
