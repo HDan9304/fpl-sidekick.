@@ -40,6 +40,17 @@
     /* Semantic Header Tokens */
     --text-header: var(--fpl-purple);
     --surface-header-hover: rgba(55, 0, 60, 0.1);
+
+    /* Planner Tokens (Light) */
+    --pitch-bg-1: #347c49;  /* Center/Top gradient */
+    --pitch-bg-2: #1e5233;  /* Edge/Bottom gradient */
+    --pitch-line: rgba(255, 255, 255, 0.2);
+    --kit-gkp: #eab308;     /* Vibrant Yellow */
+    --kit-outfield: #ffffff; /* Bright White */
+    --pill-bg: rgba(0, 20, 40, 0.6);
+    --pill-text: #ffffff;
+    --badge-bg: #ffffff;
+    --badge-text: #1a4926;
 }
 
 [data-theme="dark"] {
@@ -65,6 +76,17 @@
     /* Semantic Header Tokens (Dark) */
     --text-header: #f0f4f8; /* Slightly softer white for dark mode */
     --surface-header-hover: rgba(255, 255, 255, 0.1);
+
+    /* Planner Tokens (Dark - "Night Match") */
+    --pitch-bg-1: #245e35;  /* Dimmer green */
+    --pitch-bg-2: #143d24;  /* Deep forest green */
+    --pitch-line: rgba(255, 255, 255, 0.15); /* Softer lines */
+    --kit-gkp: #d9a507;     /* Slightly muted gold */
+    --kit-outfield: #e2e8f0; /* Off-white for contrast */
+    --pill-bg: rgba(0, 0, 0, 0.8); /* Higher opacity for readability */
+    --pill-text: #f0f4f8;
+    --badge-bg: #2d3748;    /* Dark grey badge */
+    --badge-text: #e2e8f0;
 }
 
 * {
@@ -673,57 +695,34 @@ footer {
 
 .pitch {
     /* Desktop: Spacious Stadium View */
-    background: radial-gradient(50% 50% at 50% 50%, #347c49 0%, #1e5233 100%);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: radial-gradient(50% 50% at 50% 50%, var(--pitch-bg-1) 0%, var(--pitch-bg-2) 100%);
+    border: 1px solid var(--pitch-line);
     border-radius: 16px;
-    padding: 3rem 0;
-    min-height: 720px; /* Fixed height for large screens */
-    display: flex; flex-direction: column; justify-content: space-between;
-    position: relative;
-    box-shadow: inset 0 0 80px rgba(0,0,0,0.2);
-    margin-bottom: 2rem;
-    overflow: hidden;
-}
-
-/* Markings */
+/* ... */
 .pitch::before {
     content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 150px; height: 150px; border: 2px solid rgba(255,255,255,0.15); border-radius: 50%; pointer-events: none;
+    width: 150px; height: 150px; border: 2px solid var(--pitch-line); border-radius: 50%; pointer-events: none;
 }
 .pitch::after {
     content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px;
-    background: rgba(255,255,255,0.15); pointer-events: none;
+    background: var(--pitch-line); pointer-events: none;
 }
-
-.pitch-row { display: flex; justify-content: center; gap: 2vw; position: relative; z-index: 2; }
-
-/* Desktop Player Card */
-.pitch-player {
-    display: flex; flex-direction: column; align-items: center; 
-    width: 80px; /* Fixed width for precision */
-    cursor: pointer; position: relative;
-}
-
-.kit-wrapper { position: relative; margin-bottom: 6px; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.pitch-player:hover .kit-wrapper { transform: translateY(-5px) scale(1.1); }
-
+/* ... */
 .kit-icon { 
     font-size: 2.5rem; /* Large icon */
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    transition: color 0.3s ease;
 }
+.kit-gkp { color: var(--kit-gkp); }
+.kit-outfield { color: var(--kit-outfield); }
 
 .points-badge {
     position: absolute; top: -5px; right: -8px;
-    background: #fff; color: #1a4926;
+    background: var(--badge-bg); color: var(--badge-text);
     font-size: 0.7rem; font-weight: 800;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
+/* ... */
 .player-pill {
-    background-color: rgba(0, 20, 40, 0.6);
+    background-color: var(--pill-bg);
     backdrop-filter: blur(4px);
     padding: 4px 10px;
     border-radius: 20px;
@@ -733,7 +732,7 @@ footer {
 }
 
 .p-name-short {
-    font-weight: 700; font-size: 0.75rem; color: white; display: block;
+    font-weight: 700; font-size: 0.75rem; color: var(--pill-text); display: block;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70px;
 }
 
@@ -753,7 +752,7 @@ footer {
     .pitch {
         min-height: 600px; /* Reduced verticality */
         padding: 1.5rem 0 2.5rem 0;
-        background: radial-gradient(circle at center, #2f855a 0%, #1a4926 100%); /* Simpler gradient */
+        background: radial-gradient(circle at center, var(--pitch-bg-1) 0%, var(--pitch-bg-2) 100%);
         border-radius: 0; /* Full edge-to-edge feel inside card */
         margin: 0 -1.25rem 1.5rem -1.25rem; /* Negative margin to pull to edges */
         width: calc(100% + 2.5rem);

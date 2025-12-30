@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const createCard = (p) => `
             <div class="pitch-player">
                 <div class="kit-wrapper">
-                    <i class="fa-solid fa-shirt kit-icon" style="color: ${p.element_type === 1 ? '#eab308' : '#fff'}"></i>
+                    <i class="fa-solid fa-shirt kit-icon ${p.element_type === 1 ? 'kit-gkp' : 'kit-outfield'}"></i>
                     <div class="points-badge">${p.event_points}</div>
                 </div>
                 <div class="player-pill">
