@@ -227,17 +227,23 @@ document.addEventListener('DOMContentLoaded', () => {
             starters.filter(p => p.element_type === 4)
         ];
 
-        // Modern Card Template: Badge on Kit + Name Pill
-        const createCard = (p) => `
+        // Modern Card Template: Official Kit Image + Name Pill
+        const createCard = (p) => {
+            // Logic: Goalkeepers (type 1) use distinct kit file convention if available, or fallback
+            const kitSuffix = p.element_type === 1 ? '_1-66.png' : '-66.png';
+            const imgUrl = `https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_${p.team_code}${kitSuffix}`;
+            
+            return `
             <div class="pitch-player">
                 <div class="kit-wrapper">
-                    <i class="fa-solid fa-shirt kit-icon ${p.element_type === 1 ? 'kit-gkp' : 'kit-outfield'}"></i>
+                    <img src="${imgUrl}" class="kit-icon" alt="Kit" onerror="this.src='https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png'">
                     <div class="points-badge">${p.event_points}</div>
                 </div>
                 <div class="player-pill">
                     <span class="p-name-short">${p.web_name}</span>
                 </div>
             </div>`;
+        };
 
         rows.forEach(row => {
             const rowDiv = document.createElement('div');
