@@ -54,12 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('managers-display').textContent = fplData.total_players.toLocaleString();
 
-            // B. Render Dashboard Modules
-            renderMarketHot(fplData);
-            renderMarketCold(fplData);
+            // B. Render Dashboard Modules (Only on Home Page)
+            if (document.getElementById('market-hot-list')) {
+                renderMarketHot(fplData);
+                renderMarketCold(fplData);
+            }
             
-            // C. Load Planner (User Squad)
-            loadUserTeam(fplData);
+            // C. Load Planner (Only on Planner Page)
+            if (document.getElementById('planner-message')) {
+                loadUserTeam(fplData);
+            }
 
         } catch (error) {
             console.error('Error:', error);
@@ -75,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
+            if (!tab.dataset.tab) return; // Guard for buttons without targets
+            
             tabs.forEach(t => t.classList.remove('active'));
             contents.forEach(c => c.classList.remove('active'));
             

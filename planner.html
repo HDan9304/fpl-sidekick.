@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner | FPL Sidekick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FPL Sidekick</a></div>
+            
+            <nav class="nav-links">
+                <a href="planner.html">Planner</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+            </nav>
+
+            <div class="toggle-container">
+                <button id="auth-btn" class="btn btn-primary">Sign In</button>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                
+                <button class="hamburger" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div style="padding-top: 100px;"></div>
+
+    <section id="planner" class="dashboard">
+        <div class="dash-card">
+            <div class="dash-header">
+                <h3><i class="fa-solid fa-clipboard-list" style="color: var(--fpl-purple);"></i> Squad Planner</h3>
+                <div class="tab-nav" style="margin: 0;">
+                    <button class="tab-btn active">Formation</button>
+                </div>
+            </div>
+
+            <div id="planner-content" class="planner-container">
+                <div id="planner-message" class="planner-empty">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Please <strong>Sign In</strong> (Link Your Team) to view your squad.</p>
+                </div>
+
+                <div id="squad-view" style="display: none;">
+                    <div class="pitch" id="pitch-field">
+                        </div>
+                    
+                    <h4 style="margin: 1rem 0; color: var(--text-muted); font-size: 0.9rem;">Bench</h4>
+                    <div class="bench-container" id="bench-field">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 FPL Sidekick. Not officially affiliated with the Premier League.
+    </footer>
+
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close-btn">&times;</span>
+            <h2>Link Your Team</h2>
+            <div class="input-group">
+                <input type="number" id="fpl-id-input" placeholder="Enter your FPL Team ID">
+                <button id="save-id-btn" class="btn btn-primary">Save</button>
+            </div>
+            <div class="tutorial-box">
+                <h4>How to find your ID:</h4>
+                <ol>
+                    <li>Login to the official FPL website.</li>
+                    <li>Click on the <strong>"Points"</strong> tab.</li>
+                    <li>The number in the URL is the ID: <em>.../entry/<strong>123456</strong>/event/...</em></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
