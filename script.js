@@ -43,7 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (e) { console.warn('Proxy failed:', proxy); }
         }
 
-        if (!fplData) { document.getElementById('gw-display').textContent = "Error"; return; }
+        if (!fplData) { 
+            if(document.getElementById('gw-display')) document.getElementById('gw-display').textContent = "Error"; 
+            return; 
+        }
 
         cachedFplData = fplData; // Save data for re-use
 
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error:', error);
-            document.getElementById('gw-display').textContent = "Error";
+            if(document.getElementById('gw-display')) document.getElementById('gw-display').textContent = "Error";
         }
     }
 
