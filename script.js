@@ -48,14 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
         cachedFplData = fplData; // Save data for re-use
 
         try {
-            // A. Basic Stats
-            const currentEvent = fplData.events.find(event => event.is_current) || fplData.events.find(event => event.is_next);
-            document.getElementById('gw-display').textContent = currentEvent ? currentEvent.name : "Pre-Season";
+            // A. Basic Stats (Only on Home Page)
+            if (document.getElementById('gw-display')) {
+                const currentEvent = fplData.events.find(event => event.is_current) || fplData.events.find(event => event.is_next);
+                document.getElementById('gw-display').textContent = currentEvent ? currentEvent.name : "Pre-Season";
 
-            const topPlayer = fplData.elements.sort((a, b) => b.total_points - a.total_points)[0];
-            document.getElementById('top-player-display').textContent = `${topPlayer.web_name} (${topPlayer.total_points})`;
+                const topPlayer = fplData.elements.sort((a, b) => b.total_points - a.total_points)[0];
+                document.getElementById('top-player-display').textContent = `${topPlayer.web_name} (${topPlayer.total_points})`;
 
-            document.getElementById('managers-display').textContent = fplData.total_players.toLocaleString();
+                document.getElementById('managers-display').textContent = fplData.total_players.toLocaleString();
+            }
 
             // B. Render Dashboard Modules (Only on Home Page)
             if (document.getElementById('market-hot-list')) {
